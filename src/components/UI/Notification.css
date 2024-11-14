@@ -1,0 +1,52 @@
+.notification {
+    position: absolute;
+    background-color: #ff5555;
+    color: #fff;
+    padding: 0.3125rem 0.625rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeInOut 3s ease forwards;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.notification.top {
+    bottom: 100%;
+    left: 50%;
+}
+
+.notification.top::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0.3125rem;
+    border-style: solid;
+    border-color: #ff5555 transparent transparent transparent;
+}
+
+.notification.bottom {
+    top: 100%;
+}
+
+.notification.bottom::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0.3125rem;
+    border-style: solid;
+    border-color: transparent transparent #ff5555 transparent;
+}
+
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
