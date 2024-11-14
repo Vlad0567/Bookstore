@@ -1,0 +1,74 @@
+.auth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.354);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.auth-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 22rem;
+    position: relative;
+}
+
+.auth-modal-close {
+    position: absolute;
+    top: 0.625rem;
+    right: 0.625rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.auth-mode-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.toggle-option {
+    cursor: pointer;
+    padding: 0 0.5rem;
+    color: #ccc;
+}
+
+.toggle-option.active {
+    color: #000;
+    font-weight: bold;
+}
+
+.divider {
+    margin: 0 0.5rem;
+    color: #ccc;
+}
+
+.validation-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+}
+
+.validation-list li {
+    font-size: 0.85rem;
+    margin: 0.25rem 0;
+    transition: color 0.3s ease;
+}
+
+.validation-list li.valid {
+    color: green;
+}
+
+.validation-list li.invalid {
+    color: red;
+}
