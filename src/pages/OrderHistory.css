@@ -1,0 +1,33 @@
+.order-history-page {
+    padding: 1rem;
+}
+
+.order {
+    margin-bottom: 2rem;
+}
+
+.order h3 {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.order-table th, .order-table td {
+    border: 0.0625rem solid #e6f2f5;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.book-cover {
+    width: 4.6875rem;
+    height: auto;
+}
+
+.total-row {
+    font-weight: bold;
+}
