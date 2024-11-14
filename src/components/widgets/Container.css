@@ -1,0 +1,49 @@
+.container {
+    height: 28.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.container h2 {
+    margin: 1.125rem 0 0 2.125rem;
+}
+
+.cards {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem;
+    margin: 0 1rem;
+}
+
+
+.cards::-webkit-scrollbar {
+    display: none;
+}
+
+.left, .right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ecf4fe;
+    border-radius: 1.4375rem;
+    padding: 0.3125rem;
+    justify-content: center;
+    height: 2.1875rem;
+    width: 2.1875rem;
+    border:  0.0625rem solid #00000009;
+    cursor: pointer;
+}
+
+.left {
+    left: 0.1875rem;
+}
+
+.right {
+    right: 0.025rem;
+}
+
+.left:hover, 
+.right:hover {
+    transform: translateY(-50%) scale(1.2);
+}
