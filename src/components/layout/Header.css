@@ -1,0 +1,77 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    background-color: #287fa6;
+    color: #ffffff;
+    width: 100%;
+    max-width: 75rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.625rem;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.header-icon {
+    height: 4.5rem;
+    margin-right: 0.3125rem;
+}
+
+.header-title {
+    color: #ffffff;
+    font-size: 2rem;
+    text-shadow: 0px 4px 4px #00000040;
+    width: 4.6875rem;
+}
+
+
+.header-nav-icon {
+    margin-bottom: 0.3125rem;
+    height: 1.75rem;
+    transition: transform 0.2s ease;
+}
+
+.header-item:hover .header-nav-icon {
+    transform: scale(1.2);
+}
+
+.header-nav {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.header-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.header-button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.875rem;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.header-button:hover .header-nav-icon {
+    transform: scale(1.2);
+}
+
