@@ -1,5 +1,4 @@
-const Input = ({ type = "text", placeholder = "", value, onChange, style}) => {
-  
+const Input = ({ type = "text", placeholder = "", value = "", onChange, style }) => {
     const baseStyle = {
         padding: '0.5rem 0.75rem',
         fontSize: '1rem',
@@ -15,16 +14,16 @@ const Input = ({ type = "text", placeholder = "", value, onChange, style}) => {
         }
     };
 
-  return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-    <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleInputChange}
-        style={{ ...baseStyle, ...style }}
-    />
-    </div>
+    return (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+            <input
+                type={type}
+                placeholder={placeholder}
+                value={value || ""}
+                onChange={handleInputChange}
+                style={{ ...baseStyle, ...style }}
+            />
+        </div>
     );
 };
 

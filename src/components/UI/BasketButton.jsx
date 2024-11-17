@@ -1,68 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../UI/Button';
-import Notification from './Notification'
+import Notification from './Notification';
 
-const BasketButton = ({ productId }) => {
+const BasketButton = ({ product }) => {
     const [isInBasket, setIsInBasket] = useState(false);
-    const userId = localStorage.getItem('userId');
     const [showNotification, setShowNotification] = useState(false);
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
     useEffect(() => {
         if (isAuthenticated) {
-            const checkBasketStatus = async () => {
-                try {
-                    const response = await fetch(`http://localhost:5000/api/basket/${userId}/${productId}`);
-                    const data = await response.json();
-                    setIsInBasket(data.isInBasket);
-                } catch (error) {
-                    console.error('Ошибка при проверке корзины:', error);
-                }
-            };
-            checkBasketStatus();
+            const basket = JSON.parse(localStorage.getItem('basket')) || [];
+            setIsInBasket(basket.some(item => item._id === product._id));
         }
-    }, [productId, userId, isAuthenticated]);
+    }, [product, isAuthenticated]);
 
-    const toggleBasket = async () => {
+    const toggleBasket = () => {
         if (!isAuthenticated) {
             setShowNotification(true);
             return;
         }
     
-        try {
-            const method = isInBasket ? 'DELETE' : 'POST';
-            const response = await fetch(`http://localhost:5000/api/basket`, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId, productId })
-            });
-            
-            const result = await response.json();
-            if (response.ok) {
-                setIsInBasket(!isInBasket);
-
-            } else {
-                console.error('Ошибка при изменении корзины:', result.message || 'Неизвестная ошибка');
-            }
-        } catch (error) {
-            console.error('Ошибка при изменении корзины:', error);
+        if (!product || !product._id) {
+            console.error("Product or product._id is undefined in toggleBasket");
+            return; // Останавливаем выполнение, если product не определен или не содержит _id
         }
+    
+        let basket = JSON.parse(localStorage.getItem('basket')) || [];
+    
+        if (isInBasket) {
+            // Удаляем товар из корзины
+            basket = basket.filter(item => item._id !== product._id);
+        } else {
+            // Добавляем товар в корзину с количеством 1
+            basket.push({ _id: product._id, quantity: 1 });
+        }
+        
+        localStorage.setItem('basket', JSON.stringify(basket));
+        setIsInBasket(!isInBasket);
     };
 
     return (
         <div style={{ position: 'relative' }}>
-        <Button 
-            onClick={toggleBasket} 
-            backgroundColor={isInBasket ? '#dc7125' : '#3498db'}
-            hoverColor={isInBasket ? '#c0392b' : '#185e8d'}
-            style={{ width: '100%', padding: '0.5rem 2.3125rem' }}
-        >
-            {isInBasket ? 'В корзине' : 'В корзину'}
-        </Button>
-        {showNotification && (
-            <Notification onClose={() => setShowNotification(false)} 
-            />
-        )}
+            <Button 
+                onClick={toggleBasket} 
+                backgroundColor={isInBasket ? '#dc7125' : '#3498db'}
+                hoverColor={isInBasket ? '#c0392b' : '#185e8d'}
+                style={{ width: '100%', padding: '0.5rem 2.3125rem' }}
+            >
+                {isInBasket ? 'В корзине' : 'В корзину'}
+            </Button>
+            {showNotification && (
+                <Notification message="Необходима авторизация" onClose={() => setShowNotification(false)} />
+            )}
         </div>
     );
 };

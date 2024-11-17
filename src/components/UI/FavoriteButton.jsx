@@ -7,45 +7,38 @@ import './FavoriteButton.css';
 const FavoriteButton = ({ productId }) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
-    const userId = localStorage.getItem('userId');
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const checkFavoriteStatus = async () => {
-                try {
-                    const response = await fetch(`http://localhost:5000/api/favorites/${userId}/${productId}`);
-                    const data = await response.json();
-                    setIsFavorite(data.isFavorite);
-                } catch (error) {
-                    console.error('Ошибка при проверке избранного:', error);
-                }
-            };
-            checkFavoriteStatus();
+        if (isAuthenticated && productId) { // Добавляем проверку productId
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            setIsFavorite(favorites.includes(productId));
         }
-    }, [productId, userId, isAuthenticated]);
+    }, [productId, isAuthenticated]);
 
-    const toggleFavorite = async () => {
+    const toggleFavorite = () => {
         if (!isAuthenticated) {
             setShowNotification(true);
             return;
         }
 
-        try {
-            const method = isFavorite ? 'DELETE' : 'POST';
-            const response = await fetch(`http://localhost:5000/api/favorites`, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId, productId })
-            });
-            if (response.ok) {
-                setIsFavorite(!isFavorite);
-            } else {
-                console.error('Ошибка при изменении избранного');
-            }
-        } catch (error) {
-            console.error('Ошибка при изменении избранного:', error);
+        if (!productId) {
+            console.error("Product ID is missing");
+            return;
         }
+
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        if (isFavorite) {
+            // Удаляем из избранного
+            favorites = favorites.filter(id => id !== productId);
+        } else {
+            // Добавляем в избранное
+            favorites.push(productId);
+        }
+        
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        setIsFavorite(!isFavorite);
     };
 
     return (
@@ -57,9 +50,8 @@ const FavoriteButton = ({ productId }) => {
                 onClick={toggleFavorite}
                 title={isAuthenticated ? 'Добавить в избранное' : 'Необходима авторизация'}
             />
-             {showNotification && (
-                <Notification onClose={() => setShowNotification(false)}
-                />
+            {showNotification && (
+                <Notification message="Необходима авторизация" onClose={() => setShowNotification(false)} />
             )}
         </div>
     );
