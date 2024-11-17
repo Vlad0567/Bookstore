@@ -3,36 +3,19 @@ import { useParams, Link } from 'react-router-dom';
 import BasketButton from '../components/UI/BasketButton';
 import FavoriteButton from '../components/UI/FavoriteButton';
 import genreColors from '../assets/colors.json';
+import books from '../assets/books.json'; // Подключаем статический файл с данными о книгах
 import './Product.css';
 
 const Product = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await fetch(`http://localhost:5000/api/product/${id}`);
-                if (!response.ok) {
-                    throw new Error(`Ошибка сервера: ${response.status}`);
-                }
-                const data = await response.json();
-                if (data.success) {
-                    setProduct(data.product);
-                } else {
-                    console.error('Ошибка при загрузке товара:', data.message);
-                }
-            } catch (error) {
-                console.error('Ошибка при загрузке товара:', error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProduct();
+        // Ищем продукт по id в статическом файле books.json
+        const foundProduct = books.find((book) => book._id === id);
+        setProduct(foundProduct || null); // Устанавливаем продукт или null, если не найден
     }, [id]);
 
-    if (loading) return <p>Загрузка...</p>;
     if (!product) return <p>Товар не найден</p>;
 
     const discountedPrice = product.discount
@@ -56,7 +39,7 @@ const Product = () => {
                                 key={index}   
                                 className="product-genre-badge"
                                 style={{ backgroundColor: genreColors[genre] || '#eee' }}
-                                >
+                            >
                                 {genre}
                             </Link>
                         ))}
@@ -72,8 +55,8 @@ const Product = () => {
                     {product.discount > 0 && <span className="product-original-price">{product.price} ₽</span>}
                     <span className="product-price">{discountedPrice} ₽</span>
                     <div className="product-buttons">
-                        <BasketButton productId={id} />
-                        <FavoriteButton productId={id} />
+                        <BasketButton product={product} /> {/* Передаем объект продукта */}
+                        <FavoriteButton productId={id} /> {/* Передаем объект продукта */}
                     </div>
                 </div>
             </div>
