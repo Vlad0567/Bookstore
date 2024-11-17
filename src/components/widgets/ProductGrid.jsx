@@ -11,7 +11,7 @@ const ProductGrid = ({ products, title, emptyMessage = "Ошибка вывод�
                     {products.map((product) => (
                         <Card
                             key={product._id}
-                            id={product._id}
+                            _id={product._id}
                             image={product.image}
                             title={product.title}
                             author={product.author}

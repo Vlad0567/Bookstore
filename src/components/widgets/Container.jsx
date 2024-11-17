@@ -2,41 +2,34 @@ import React, { useEffect, useState, useRef } from 'react';
 import leftIcon from '../../assets/left.svg';
 import rightIcon from '../../assets/right.svg';
 import Card from './Card';
+import booksData from '../../assets/books.json';
 import './Container.css';
 
-const Container = ({ apiEndpoint, title }) => {
+const Container = ({ filter, title }) => {
     const [products, setProducts] = useState([]);
     const scrollRef = useRef(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`http://localhost:5000/api/${apiEndpoint}`);
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error('Ошибка при загрузке данных:', error);
-            }
-        };
-        fetchData();
-    }, [apiEndpoint]);
+        // Фильтрация книг на основе переданного фильтра
+        let filteredBooks;
+        if (filter === "latest") {
+            filteredBooks = [...booksData].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0);
+        } else if (filter === "top-sales") {
+            filteredBooks = [...booksData].sort((a, b) => b.discount - a.discount).slice(0, 5);
+        } else {
+            filteredBooks = booksData;
+        }
+        setProducts(filteredBooks);
+    }, [filter]);
 
     const scrollLeft = () => {
         const scrollElement = scrollRef.current;
-        if (scrollElement.scrollLeft <= 0) {
-            scrollElement.scrollLeft = scrollElement.scrollWidth;
-        } else {
-            scrollElement.scrollLeft -= 220;
-        }
+        scrollElement.scrollLeft = Math.max(scrollElement.scrollLeft - 220, 0);
     };
 
     const scrollRight = () => {
         const scrollElement = scrollRef.current;
-        if (scrollElement.scrollLeft + scrollElement.clientWidth >= scrollElement.scrollWidth) {
-            scrollElement.scrollLeft = 0;
-        } else {
-            scrollElement.scrollLeft += 220;
-        }
+        scrollElement.scrollLeft = Math.min(scrollElement.scrollLeft + 220, scrollElement.scrollWidth);
     };
 
     return (
@@ -47,7 +40,7 @@ const Container = ({ apiEndpoint, title }) => {
 
             <div className="cards" ref={scrollRef}>
                 {products.map(product => (
-                    <Card key={product._id} id={product._id} image={product.image} price={product.price} discount={product.discount} title={product.title} author={product.author} />
+                    <Card key={product._id} _id={product._id} image={product.image} price={product.price} discount={product.discount} title={product.title} author={product.author} />
                 ))}
             </div>
 
