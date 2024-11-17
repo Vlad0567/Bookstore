@@ -32,8 +32,8 @@ const Header = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('isAuthenticated');
-        setIsAuthenticated(false);
+        localStorage.clear();
+        window.location.reload();
     };
 
     const showNotification = (message, ref, position = "top") => {
@@ -52,7 +52,7 @@ const Header = () => {
         if (isAuthenticated) {
             navigate(path);
         } else {
-            showNotification('Необходима авторизация', ref,'bottom');
+            showNotification('Необходима авторизация', ref, 'bottom');
         }
     };
 
@@ -70,10 +70,10 @@ const Header = () => {
                     </Link>
 
                     {isAuthenticated ? (
-                        <Link to="/profile" className="header-item header-button">
-                            <img src={profileIcon} alt="Profile" className="header-nav-icon" />
-                            <div className="header-text">Профиль</div>
-                        </Link>
+                        <button onClick={handleLogout} className="header-item header-button">
+                            <img src={profileIcon} alt="Logout" className="header-nav-icon" />
+                            <div className="header-text">Выйти</div>
+                        </button>
                     ) : (
                         <button onClick={() => setIsAuthModalOpen(true)} className="header-item header-button">
                             <img src={profileIcon} alt="Profile" className="header-nav-icon" />
