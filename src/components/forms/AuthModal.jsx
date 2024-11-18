@@ -13,7 +13,7 @@ const AuthModal = ({ onClose, onLoginSuccess }) => {
             localStorage.setItem('username', username);
             onLoginSuccess();
             onClose();
-            window.location.reload()
+            window.location.reload();
         }
     };
 
