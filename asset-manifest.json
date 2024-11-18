@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/bookstore/static/css/main.8988a422.css",
-    "main.js": "/bookstore/static/js/main.46004ac6.js",
-    "static/media/cat.png": "/bookstore/static/media/cat.70234a98ecb06cefb2ce.png",
-    "static/media/inFavorite.svg": "/bookstore/static/media/inFavorite.2d33e4b3ed6ff22bd05b26f84b0610ed.svg",
-    "static/media/odnoklasniki.svg": "/bookstore/static/media/odnoklasniki.d94aa7073af331ce6bb57181e56ab374.svg",
-    "static/media/basket.svg": "/bookstore/static/media/basket.019fe1a9fa0d344981d870f315123ae4.svg",
-    "static/media/profile.svg": "/bookstore/static/media/profile.faa0d979a71983f69aa3770e00328f34.svg",
-    "static/media/vk.svg": "/bookstore/static/media/vk.21dce1775fd2b637f6419b1ad937b04c.svg",
-    "static/media/tiktok.svg": "/bookstore/static/media/tiktok.88373630cbc0ce3e591fddd07a0a3690.svg",
-    "static/media/home.svg": "/bookstore/static/media/home.007209b5bdd6f96a3839d01460ee48ea.svg",
-    "static/media/oders.svg": "/bookstore/static/media/oders.04106db901b60dd6e7719d031a2c508b.svg",
-    "static/media/telegram.svg": "/bookstore/static/media/telegram.c96e5e5c3aedabc90e2a5d1acb4fb1fa.svg",
-    "static/media/favorites.svg": "/bookstore/static/media/favorites.43cbbe354867d7f0764aef233af62c7f.svg",
-    "static/media/youtube.svg": "/bookstore/static/media/youtube.36b46418c012af33be4fc9c84639e6f5.svg",
-    "static/media/right.svg": "/bookstore/static/media/right.d827e723ce5cafed09c6102814b16108.svg",
-    "static/media/left.svg": "/bookstore/static/media/left.d5a182779f65b0dff8456709e3663d07.svg",
-    "index.html": "/bookstore/index.html",
-    "static/media/favorite.svg": "/bookstore/static/media/favorite.bba95edab7a2198f29fe394180272b3f.svg",
-    "main.8988a422.css.map": "/bookstore/static/css/main.8988a422.css.map",
-    "main.46004ac6.js.map": "/bookstore/static/js/main.46004ac6.js.map"
+    "main.css": "/Bookstore/static/css/main.8988a422.css",
+    "main.js": "/Bookstore/static/js/main.de3c8b6e.js",
+    "static/media/cat.png": "/Bookstore/static/media/cat.70234a98ecb06cefb2ce.png",
+    "static/media/inFavorite.svg": "/Bookstore/static/media/inFavorite.2d33e4b3ed6ff22bd05b26f84b0610ed.svg",
+    "static/media/odnoklasniki.svg": "/Bookstore/static/media/odnoklasniki.d94aa7073af331ce6bb57181e56ab374.svg",
+    "static/media/basket.svg": "/Bookstore/static/media/basket.019fe1a9fa0d344981d870f315123ae4.svg",
+    "static/media/profile.svg": "/Bookstore/static/media/profile.faa0d979a71983f69aa3770e00328f34.svg",
+    "static/media/vk.svg": "/Bookstore/static/media/vk.21dce1775fd2b637f6419b1ad937b04c.svg",
+    "static/media/tiktok.svg": "/Bookstore/static/media/tiktok.88373630cbc0ce3e591fddd07a0a3690.svg",
+    "static/media/home.svg": "/Bookstore/static/media/home.007209b5bdd6f96a3839d01460ee48ea.svg",
+    "static/media/oders.svg": "/Bookstore/static/media/oders.04106db901b60dd6e7719d031a2c508b.svg",
+    "static/media/telegram.svg": "/Bookstore/static/media/telegram.c96e5e5c3aedabc90e2a5d1acb4fb1fa.svg",
+    "static/media/favorites.svg": "/Bookstore/static/media/favorites.43cbbe354867d7f0764aef233af62c7f.svg",
+    "static/media/youtube.svg": "/Bookstore/static/media/youtube.36b46418c012af33be4fc9c84639e6f5.svg",
+    "static/media/right.svg": "/Bookstore/static/media/right.d827e723ce5cafed09c6102814b16108.svg",
+    "static/media/left.svg": "/Bookstore/static/media/left.d5a182779f65b0dff8456709e3663d07.svg",
+    "index.html": "/Bookstore/index.html",
+    "static/media/favorite.svg": "/Bookstore/static/media/favorite.bba95edab7a2198f29fe394180272b3f.svg",
+    "main.8988a422.css.map": "/Bookstore/static/css/main.8988a422.css.map",
+    "main.de3c8b6e.js.map": "/Bookstore/static/js/main.de3c8b6e.js.map"
   },
   "entrypoints": [
     "static/css/main.8988a422.css",
-    "static/js/main.46004ac6.js"
+    "static/js/main.de3c8b6e.js"
   ]
 }
